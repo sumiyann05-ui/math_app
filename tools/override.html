@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>枠手動指定ツール（数学アプリ）</title>
+  <style>
+    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif; margin: 16px; }
+    header { margin-bottom: 12px; }
+    .row { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+    select, button { padding: 8px 10px; }
+    #canvas-wrap { position: relative; max-width: 100%; }
+    #img { max-width: 100%; display: block; }
+    #overlay { position: absolute; left: 0; top: 0; pointer-events: none; }
+    .note { color: #374151; font-size: 0.95rem; }
+    .badge { background:#eef2ff; color:#1e3a8a; padding:4px 8px; border-radius:999px; }
+    footer { margin-top: 12px; }
+    .list { margin-top: 8px; font-size: 0.95rem; }
+    .rect { margin: 4px 0; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>枠手動指定ツール</h1>
+    <p class="note">ページ画像上でドラッグして問題枠（上部の囲み）を指定し、「追加」→「JSONをダウンロード」。<br>
+    その後、同梱の <code>regenerate_from_overrides.py</code> を実行すると、指定した枠で再切り出しされます。</p>
+  </header>
+
+  <div class="row">
+    <label>ページ選択：</label>
+    <select id="page-select"></select>
+    <span class="badge" id="unit-badge"></span>
+    <button id="btn-add">追加</button>
+    <button id="btn-clear">選択クリア</button>
+    <button id="btn-download">JSONをダウンロード</button>
+    <input type="file" id="file-upload" accept="application/json" />
+    <button id="btn-load">JSONを読み込み</button>
+  </div>
+
+  <div id="canvas-wrap">
+    <img id="img" src="" alt="page" />
+    <canvas id="overlay"></canvas>
+  </div>
+
+  <footer>
+    <div class="list" id="list"></div>
+  </footer>
+
+  <script src="override.js"></script>
+</body>
+</html>
